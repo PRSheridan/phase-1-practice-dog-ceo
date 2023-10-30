@@ -1,10 +1,9 @@
-console.log('%c HI', 'color: firebrick')
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
 const breedUrl = "https://dog.ceo/api/breeds/list/all";
 
 document.addEventListener('DOMContentLoaded', () => {
-    images = document.getElementById("dog-image-container");
-    breeds = document.getElementById("dog-breeds");
+    let images = document.getElementById("dog-image-container");
+    let breeds = document.getElementById("dog-breeds");
 
     fetch(imgUrl)
     .then(function (response) {
@@ -37,12 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("breed-dropdown").addEventListener('change', () => {
         let liList = document.querySelectorAll('li');
+        let selectedValue = document.getElementById("breed-dropdown").value;
         liList.forEach((e) => {
-            //e.style.display = 'none';
-            if(e.textContent.slice(0, 1) == document.getElementById("breed-dropdown").value) {
-                console.log(e.textContent);
-                //e.style.display = 'visible';
+            e.style.removeProperty('display');
+            if(e.className != selectedValue) {
+                e.style.display = 'none';
             };
         });
     });
+
 });
